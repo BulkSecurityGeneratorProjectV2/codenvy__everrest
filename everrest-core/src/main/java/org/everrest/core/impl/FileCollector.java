@@ -13,6 +13,7 @@ package org.everrest.core.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.security.SecureRandom;
 
 /** Provides store for temporary files. */
@@ -84,7 +85,7 @@ public final class FileCollector {
    */
   public File createFile() throws IOException {
     checkStore();
-    return File.createTempFile(PREF, SUFF, store);
+    return Files.createTempFile(store.toPath(), PREF, SUFF).toFile();
   }
 
   public File getStore() {
